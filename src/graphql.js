@@ -1,14 +1,17 @@
 import { ApolloClient } from 'apollo-client';
-import { createUploadLink } from 'apollo-link-http';
+//import { createHttpLink } from 'apollo-link-http';
+import {createUploadLink} from 'apollo-upload-client' //-> instalar  esta libreria
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { isContext } from 'vm';
 
 const API_URL = "https://backendblog-7pvzldquh.now.sh/"
+/*ligorio@devf1.mx prueba*/
+// const API_URL = "http://localhost:4000/"
 
 const httpLink = createUploadLink({
-    uri:API_URL
-})
+    uri: API_URL
+});
 
 const authLink = setContext( (_,{headers}) => {
     const token = localStorage.getItem('blogToken');
